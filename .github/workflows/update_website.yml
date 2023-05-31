@@ -11,15 +11,6 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: SSH into Web Server
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: 31.31.198.57
-          username: u2082305
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /www/cicdsite.site/cicd/
-            git pull
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git pull"
+          
           
