@@ -22,4 +22,4 @@ jobs:
           script: |
             cd /www/cicdsite.site/cicd/
             git pull
-            
+          
