@@ -1,4 +1,4 @@
-name: Update Website
+name: Update Web Server
 
 on:
   push:
@@ -6,13 +6,19 @@ on:
       - main  # Adjust this branch name based on your repository's branch setup
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Update Website
-      run: |
-        cp -R . C:\OSPanel\domains\localhost
+      - name: SSH into Web Server
+        uses: appleboy/ssh-action@v0.16.1
+        with:
+          host: 31.31.198.57
+          username: u2082305
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /www/cicdsite.site/cicd/
+            git pull
