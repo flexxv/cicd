@@ -23,7 +23,8 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.SSH_PORT }}
         script: |
-          ls
+          cd www/cicdsite.site/cicd
+          git pull
       
           
           
